@@ -72,7 +72,7 @@
           </div>
           <div class="machine-details">
             <h3>Multiple SMT Assembly Line</h3>
-            <p>High-speed surface mount technology for precision PCB assembly with automated optical inspection and quality control systems.</p>
+            <p>High-speed surface mount technology for precision PCB assembly with 3D solder paste inspection (SPI), automated optical inspection and quality control systems.</p>
             <ul class="machine-specs">
             </ul>
           </div>
@@ -220,104 +220,106 @@
   </footer>
 
   <!-- Carousel JS -->
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
+<!-- Carousel JS -->
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
 
-    document.addEventListener("DOMContentLoaded", () => {
-      const slides = document.querySelectorAll(".carousel-slide");
-      const dots = document.querySelectorAll(".carousel-dots .dot");
-      const prevBtn = document.querySelector(".carousel-prev");
-      const nextBtn = document.querySelector(".carousel-next");
-      let currentIndex = 0;
-      let autoRotateInterval;
+  document.addEventListener("DOMContentLoaded", () => {
+    const slides = document.querySelectorAll(".carousel-slide");
+    const dots = document.querySelectorAll(".carousel-dots .dot");
+    const prevBtn = document.querySelector(".carousel-prev");
+    const nextBtn = document.querySelector(".carousel-next");
+    let currentIndex = 0;
+    let autoRotateInterval;
 
-      function showSlide(index) {
-        // Remove active class from all slides and dots
-        slides.forEach(slide => slide.classList.remove("active"));
-        dots.forEach(dot => dot.classList.remove("active"));
-        
-        // Add active class to current slide and dot
-        slides[index].classList.add("active");
-        dots[index].classList.add("active");
-        
-        // Update info text
-        const activeSlide = slides[index];
-        document.getElementById("machine-title").textContent = activeSlide.dataset.title;
-        document.getElementById("machine-desc").textContent = activeSlide.dataset.description;
-
-        currentIndex = index;
-      }
-
-      function nextSlide() {
-        showSlide((currentIndex + 1) % slides.length);
-      }
-
-      function prevSlide() {
-        showSlide((currentIndex - 1 + slides.length) % slides.length);
-      }
-
-      function startAutoRotation() {
-        autoRotateInterval = setInterval(nextSlide, 5000);
-      }
-
-      function stopAutoRotation() {
-        clearInterval(autoRotateInterval);
-      }
-
-      // Event listeners
-      nextBtn.addEventListener("click", () => {
-        stopAutoRotation();
-        nextSlide();
-        startAutoRotation();
-      });
+    function showSlide(index) {
+      // Remove active class from all slides and dots
+      slides.forEach(slide => slide.classList.remove("active"));
+      dots.forEach(dot => dot.classList.remove("active"));
       
-      prevBtn.addEventListener("click", () => {
-        stopAutoRotation();
-        prevSlide();
-        startAutoRotation();
-      });
+      // Add active class to current slide and dot
+      slides[index].classList.add("active");
+      dots[index].classList.add("active");
+      
+      // Update info text
+      const activeSlide = slides[index];
+      document.getElementById("machine-title").textContent = activeSlide.dataset.title;
+      document.getElementById("machine-desc").textContent = activeSlide.dataset.description;
 
-      dots.forEach(dot => {
-        dot.addEventListener("click", () => {
-          stopAutoRotation();
-          showSlide(parseInt(dot.dataset.index));
-          startAutoRotation();
-        });
-      });
+      currentIndex = index;
+    }
 
-      // Pause auto-rotation when hovering over carousel
-      const carouselContainer = document.querySelector(".carousel-container");
-      if (carouselContainer) {
-        carouselContainer.addEventListener("mouseenter", stopAutoRotation);
-        carouselContainer.addEventListener("mouseleave", startAutoRotation);
-      }
+    function nextSlide() {
+      showSlide((currentIndex + 1) % slides.length);
+    }
 
-      // Start auto-rotation
+    function prevSlide() {
+      showSlide((currentIndex - 1 + slides.length) % slides.length);
+    }
+
+    function startAutoRotation() {
+      // Increased from 5000ms to 8000ms for longer display time
+      autoRotateInterval = setInterval(nextSlide, 8000);
+    }
+
+    function stopAutoRotation() {
+      clearInterval(autoRotateInterval);
+    }
+
+    // Event listeners
+    nextBtn.addEventListener("click", () => {
+      stopAutoRotation();
+      nextSlide();
       startAutoRotation();
+    });
     
-      // Scroll animation functionality
-      const animatedElements = document.querySelectorAll('.animate-on-scroll');
-      
-      // Create Intersection Observer
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            // Add the visible class with a small delay for better effect
-            setTimeout(() => {
-              entry.target.classList.add('is-visible');
-            }, 50);
-          }
-        });
-      }, {
-        threshold: 0.15, // Trigger when 15% of element is visible
-        rootMargin: '0px 0px -50px 0px' // Adjust trigger point slightly upward
-      });
-      
-      // Observe all animated elements
-      animatedElements.forEach(element => {
-        observer.observe(element);
+    prevBtn.addEventListener("click", () => {
+      stopAutoRotation();
+      prevSlide();
+      startAutoRotation();
+    });
+
+    dots.forEach(dot => {
+      dot.addEventListener("click", () => {
+        stopAutoRotation();
+        showSlide(parseInt(dot.dataset.index));
+        startAutoRotation();
       });
     });
-  </script>   
+
+    // Pause auto-rotation when hovering over carousel
+    const carouselContainer = document.querySelector(".carousel-container");
+    if (carouselContainer) {
+      carouselContainer.addEventListener("mouseenter", stopAutoRotation);
+      carouselContainer.addEventListener("mouseleave", startAutoRotation);
+    }
+
+    // Start auto-rotation
+    startAutoRotation();
+  
+    // Scroll animation functionality
+    const animatedElements = document.querySelectorAll('.animate-on-scroll');
+    
+    // Create Intersection Observer
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          // Add the visible class with a small delay for better effect
+          setTimeout(() => {
+            entry.target.classList.add('is-visible');
+          }, 50);
+        }
+      });
+    }, {
+      threshold: 0.15, // Trigger when 15% of element is visible
+      rootMargin: '0px 0px -50px 0px' // Adjust trigger point slightly upward
+    });
+    
+    // Observe all animated elements
+    animatedElements.forEach(element => {
+      observer.observe(element);
+    });
+  });
+</script>   
 </body>
 </html>
