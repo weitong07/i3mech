@@ -243,23 +243,17 @@ img {
 
 .slide-caption {
   position: absolute;
-  bottom: 20%;
-  left: 10%;
+  bottom: 40%;
+  left: 50%; /* Changed from left: 5 to left: 50% */
+  transform: translateX(-50%); /* This centers it horizontally */
   color: white;
-  background: rgba(0, 93, 170, 0.7);
+  background: rgba(0, 93, 170, 0.5);
   padding: 20px;
   max-width: 500px;
   border-left: 4px solid #7AC143;
+  text-align: center; /* Center the text inside as well */
 }
 
-.center-caption {
-  left: 50%;
-  transform: translateX(-50%);
-  text-align: center;
-  width: 80%;
-  max-width: 600px;
-  bottom: 30%;
-}
 
 .carousel-dots {
   position: absolute;
@@ -316,7 +310,6 @@ img {
 }
 
 /* ===== 6. SERVICES SECTION ===== */
-/* ===== IMPROVED SERVICES ALIGNMENT ===== */
 .services-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -336,7 +329,6 @@ img {
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
   border-top: 4px solid #7AC143;
   transition: all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
-  /* FIXED: Equal height and better spacing */
   height: 100%; /* Ensures all cards have equal height */
   display: flex;
   flex-direction: column;
@@ -1079,29 +1071,6 @@ img {
   position: relative;
   width: 100%;
   height: 100%;
-}
-
-.carousel-slide {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  opacity: 0;
-  transition: opacity 0.6s ease;
-}
-
-.carousel-slide.active {
-  opacity: 1;
-}
-
-.carousel-slide img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.5s ease;
-}
-
-.carousel-container:hover .carousel-slide img {
-  transform: scale(1.05);
 }
 
 /* Carousel Navigation Buttons */
