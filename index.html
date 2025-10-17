@@ -17,8 +17,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&display=swap" rel="stylesheet">
 
-  <!-- CSS -->
-  <link rel="stylesheet" href="stylesTest.css">
+  <!-- Your CSS -->
+<link rel="stylesheet" href="stylesTest.css">
 </head>
 
 <body>
@@ -48,7 +48,6 @@
         </nav>
       </div>
       
-      <!-- Accent lines below the header content -->
       <div class="accent-lines">
         <div class="green-line"></div>
         <div class="blue-line"></div>
@@ -57,7 +56,6 @@
   </header>
 
   <main class="main-content">
-    <!-----carousel section------->
     <section class="hero-section">
       <div class="hero-carousel">
         <!-- Slide 1 -->
@@ -138,7 +136,8 @@
               <p>Our engineers have the expertise in designing plastic and metal for injection molding, casting, extrusion and stamping.</p>
             </div>
           </div>
-
+          
+          <!--Step 4-->
           <div class="process-step">
             <div class="step-number">4</div>
             <div class="step-content">
@@ -147,7 +146,7 @@
             </div>
           </div>          
           
-          <!-- Step 4 -->
+          <!-- Step 5 -->
           <div class="process-step">
             <div class="step-number">5</div>
             <div class="step-content">
@@ -160,7 +159,7 @@
             </div>
           </div>
           
-          <!-- Step 5 -->
+          <!-- Step 6 -->
           <div class="process-step">
             <div class="step-number">6</div>
             <div class="step-content">
@@ -169,7 +168,7 @@
             </div>
           </div>
           
-          <!-- Step 6 -->
+          <!-- Step 7 -->
           <div class="process-step">
             <div class="step-number">7</div>
             <div class="step-content">
@@ -370,13 +369,59 @@
 
   <footer class="site-footer">
     <div class="container">
-      <p>&copy; <span id="year"></span> iTrimech Sdn Bhd. All rights reserved. 
+      <p>&copy; <span id="year"></span> iTrimech Sdn Bhd. All rights reserved
+      </p>
     </div>
   </footer>
+
+  <!-- Preload carousel images -->
+  <div style="display: none;">
+    <!-- Preload hero carousel images -->
+    <img src="img/carousel/2.png" alt="Preload hero image 1">
+    <img src="img/carousel/image.png" alt="Preload hero image 2">
+    <img src="img/carousel/3.jpeg" alt="Preload hero image 3">
+    
+    <!-- Preload production carousel images -->
+    <img src="img/main/production1.jpeg" alt="Preload production image 1">
+    <img src="img/main/production2.png" alt="Preload production image 2">
+    <img src="img/main/picture4.jpg" alt="Preload production image 3">
+  </div>
 
   <script>
     // Set current year in footer
     document.getElementById("year").textContent = new Date().getFullYear();
+    
+    // Enhanced carousel preloading function
+    function preloadCarouselImages() {
+      const heroImages = [
+        'img/carousel/2.png',
+        'img/carousel/image.png',
+        'img/carousel/3.jpeg'
+      ];
+      
+      const productionImages = [
+        'img/main/production1.jpeg',
+        'img/main/production2.png',
+        'img/main/picture4.jpg'
+      ];
+      
+      // Preload hero images
+      heroImages.forEach(src => {
+        const img = new Image();
+        img.src = src;
+      });
+      
+      // Preload production images
+      productionImages.forEach(src => {
+        const img = new Image();
+        img.src = src;
+      });
+      
+      console.log('Carousel images preloaded');
+    }
+    
+    // Call preload function as soon as possible
+    document.addEventListener('DOMContentLoaded', preloadCarouselImages);
     
     // Hero Carousel Functionality
     document.addEventListener('DOMContentLoaded', function() {
@@ -564,7 +609,4 @@
   </script>
 
 </body>
-
 </html>
-
-
